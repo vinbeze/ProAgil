@@ -424,6 +424,9 @@ obj/
 .history
 .ionide
 
+#database in file
+ProAgil.db1
+
 ### VisualStudio ###
 
 # User-specific files
