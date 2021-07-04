@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ProAgil.API.Data;
-using ProAgil.API.Model;
+using ProAgil.Repository;
 
 namespace ProAgil.API.Controllers
 {
@@ -17,9 +13,9 @@ namespace ProAgil.API.Controllers
     {
 
             
-        public readonly DataContext _context ;
+        public readonly ProAgilContext _context ;
         
-        public ValuesController(DataContext context)
+        public ValuesController(ProAgilContext context)
         {
             _context = context;
         }
