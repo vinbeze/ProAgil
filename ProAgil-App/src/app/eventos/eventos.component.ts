@@ -1,9 +1,14 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { FormControl, FormGroup, MinValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Evento } from '../_models/Evento';
 import { EventoService } from '../_services/evento.service';
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+
+defineLocale('pt-br',ptBrLocale)
+
 
 @Component({
   selector: 'app-eventos',
@@ -17,15 +22,18 @@ export class EventosComponent implements OnInit {
   imagemLargura: number = 50;
   imagemMargem: number = 2;
   mostrarImagem: boolean = false;
-  modalRef: BsModalRef  = new BsModalRef();
   registerForm!: FormGroup;
 
   _filtroLista = '';
 
   constructor(
     private eventoService: EventoService,
-    private modalService:  BsModalService
-  ) { }
+    private modalService:  BsModalService,
+    private fb: FormBuilder,
+    private localService:  BsLocaleService
+  ) {
+    this.localService.use('pt-br')
+  }
 
   get filtroLista(){
     return this._filtroLista;
@@ -36,8 +44,8 @@ export class EventosComponent implements OnInit {
   }
 
 
-  openModal(template: TemplateRef<any>){
-    this.modalRef = this.modalService.show(template);
+  openModal(template: any){
+    template.show();
   }
 
   ngOnInit() {
@@ -57,17 +65,17 @@ export class EventosComponent implements OnInit {
   }
 
   validation(){
-    this.registerForm = new FormGroup({
-        tema: new FormControl('',
-          [Validators.required,Validators.minLength(4),Validators.maxLength(50)]),
-        local: new FormControl('',Validators.required),
-        dataEvento: new FormControl('',Validators.required),
-        qtdPessoas: new FormControl('',
-          [Validators.required,Validators.max(120000)]),
-        imagemURL: new FormControl('',Validators.required),
-        telefone: new FormControl('',Validators.required),
-        email: new FormControl('',
-          [Validators.required,Validators.email]),
+    this.registerForm = this.fb.group({
+        tema: ['',
+          [Validators.required,Validators.minLength(4),Validators.maxLength(50)]],
+        local: ['',Validators.required],
+        dataEvento: ['',Validators.required],
+        qtdPessoas: ['',
+          [Validators.required,Validators.max(120000)]],
+        imagemURL: ['',Validators.required],
+        telefone: ['',Validators.required],
+        email: ['',
+          [Validators.required,Validators.email]],
     })
   }
 
