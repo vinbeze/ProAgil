@@ -21,4 +21,18 @@ constructor(private http: HttpClient) { }
     return this.http.get<Evento>(`${this.baseUrl}/${id}`);
   }
 
+  postEvento(evento:Evento){
+    return this.http.post(`${this.baseUrl}`,evento);
+  }
+
+  putEvento(evento:Evento){
+    return this.http.put(`${this.baseUrl}/${evento.eventoId}`,evento);
+  }
+
+  deleteEvento(evento:Evento){
+    return this.http.delete(`${this.baseUrl}/${evento.eventoId}`);
+  }
+
+
+
 }

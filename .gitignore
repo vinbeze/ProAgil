@@ -650,3 +650,5 @@ Thumbs.db
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,visualstudio,linux,dotnetcore,csharp
 
+.vscode/launch.json
+.vscode/tasks.json
