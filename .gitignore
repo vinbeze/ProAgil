@@ -399,7 +399,7 @@ obj/
 
 # Common node modules locations
 /node_modules
-/wwwroot/node_modules
+/wwwroot/img/*
 
 ### Linux ###
 
@@ -653,4 +653,4 @@ Thumbs.db
 .vscode/launch.json
 .vscode/tasks.json
 ProAgil.API/ProAgil.db
-ProAgil.API/Resources/*
+ProAgil.API/Resources/Images/*
